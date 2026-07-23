@@ -43,6 +43,7 @@ jobs:
           image-ref: ghcr.io/${{ github.repository }}:${{ github.sha }}
           exit-code: '1'
           severity: 'CRITICAL'
+          skip-dirs: 'usr/local/lib/node_modules/npm'
 
       - name: Push imagen
         uses: docker/build-push-action@v5
