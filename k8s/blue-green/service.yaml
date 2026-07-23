@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventario-app-bg
+spec:
+  selector:
+    app: inventario-app
+    color: blue
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: NodePort

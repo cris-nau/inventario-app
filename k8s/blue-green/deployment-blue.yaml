@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventario-app-blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inventario-app
+      color: blue
+  template:
+    metadata:
+      labels:
+        app: inventario-app
+        color: blue
+    spec:
+      containers:
+      - name: inventario-app
+        image: ghcr.io/cris-nau/inventario-app:latest
+        env:
+        - name: APP_COLOR
+          value: "blue"
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
